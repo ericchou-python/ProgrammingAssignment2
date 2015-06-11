@@ -9,7 +9,11 @@
 # cacheSolve(c)
 # solve(c) %*% c
 # You should get the Identity Matrix
-    
+
+## Usage Example: 
+## > a<-makeCacheMatrix()
+## > a$set(matrix(1:4,2,2))
+## > cacheSolve(a)
 
 ## makeCacheMatrix: This function creates a special "matrix" object 
 ## that can cache its inverse.
@@ -24,7 +28,8 @@ makeCacheMatrix <- function(x = matrix()) {
     get <- function() x
     setmatrix <- function(solve) m <<- solve
     getmatrix <- function() m
-    list(set = set, get = get, setmatrix = setmatrix, getmatrix = getmatrix)
+    list(set = set, get = get, 
+         setmatrix = setmatrix, getmatrix = getmatrix)
 }
 
 
@@ -36,7 +41,7 @@ makeCacheMatrix <- function(x = matrix()) {
 
 cacheSolve <- function(x = matrix(), ...) {
     # check for cache
-    m <- x$getmatrix()
+    m<-x$getmatrix()
     if(!is.null(m)) {
         message("getting cached data")
         return(m)
